@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnSearch;
     private TextView txtInfo;//查询结果
 
+    private String qrcode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +88,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startQrCode();
                 break;
             case R.id.btn_search:
-                processThreadSearch();
+
+                String str = editQrCode.getText().toString().trim();
+                if(str.length()!=16){
+                    Toast.makeText(MainActivity.this, "二维码不正确", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    qrcode = str;
+                    processThreadSearch();
+                }
+
                 break;
         }
     }
@@ -118,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == Constant.REQ_QR_CODE && resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+
+            if(scanResult.contains("?")){
+                scanResult = scanResult.split("\\?")[1];
+            }
+
             //将扫描出的信息显示出来
             tvResult.setText(scanResult);
 
@@ -169,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Thread() {
             public void run() {
 
-                String path = HttpUtil.IP + "/pda_updateGoods";
+                String path = HttpUtil.IP + "/prize/exchange_deliveryApp?qrcode="+qrcode;
                 String result = HttpUtil.httpClient(null,path,"POST");
 
                 Message msg = new Message();

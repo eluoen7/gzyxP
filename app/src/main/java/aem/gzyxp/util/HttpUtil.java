@@ -16,7 +16,7 @@ import static java.net.Proxy.Type.HTTP;
 public class HttpUtil {
 	
 	//public static String IP="http://120.77.49.216/gdsalt_dataup_pda/";
-	public static String IP="http://120.77.49.216/gdsalt_dataup_pda/";
+	public static String IP="http://code.gdsalt.com/gzsalt_yx/";
 	
 	public static VersionMessage vm = null;
 
@@ -127,7 +127,7 @@ public class HttpUtil {
 		int versionCode = -1;
 		try {
 			versionCode = context.getPackageManager().getPackageInfo(
-					"eluoen.ghdp", 0).versionCode;
+					"aem.gzyxp", 0).versionCode;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -144,7 +144,7 @@ public class HttpUtil {
 		String versionName = "";
 		try {
 			versionName = context.getPackageManager().getPackageInfo(
-					"eluoen.ghdp", 0).versionName;
+					"aem.gzyxp", 0).versionName;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}

@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">广州营销</string>
+    <string name="app_name">扫描核销</string>
     <string name="scan_or_edit">SCAN OR EDIT</string>
     <string name="scan">SCAN</string>
-    <string name="search">查询</string>
+    <string name="search">核销</string>
 
 </resources>
